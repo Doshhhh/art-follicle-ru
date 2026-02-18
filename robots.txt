@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://transplantbusiness.com/sitemap.xml
