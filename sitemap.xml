@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<url>
-		<loc>https://transplantbusiness.com/</loc>
-		<lastmod>2026-01-24</lastmod>
+		<loc>https://www.business.akademy21.ru/</loc>
+		<lastmod>2026-02-18</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 
+		<xhtml:link rel="alternate" hreflang="ru" href="https://www.business.akademy21.ru/" />
+		<xhtml:link rel="alternate" hreflang="en" href="https://transplantbusiness.com/" />
+
 		<image:image>
-			<image:loc>https://transplantbusiness.com/assets/images/tild3031-3465-4530-b832-343736323261__main_pic.jpg</image:loc>
-			<image:title>Ecological Hair Transplant AF technology main visual</image:title>
-			<image:caption>Start a business with patented hair transplantation technology</image:caption>
+			<image:loc>https://www.business.akademy21.ru/assets/images/webp/tild3031-3465-4530-b832-343736323261__main_pic.webp</image:loc>
+			<image:title>Ecological Hair Transplant AF — основное изображение</image:title>
+			<image:caption>Откройте бизнес с запатентованной технологией пересадки волос</image:caption>
 		</image:image>
 
 		<image:image>
-			<image:loc>https://transplantbusiness.com/assets/images/Международная заявка PCT RU2025050133-requ-000006-en-20250513_page-0001.jpg</image:loc>
-			<image:title>International Patent Application PCT RU2025050133</image:title>
+			<image:loc>https://www.business.akademy21.ru/assets/images/webp/_4pdf_-_Page_1_of_1.jpg.webp</image:loc>
+			<image:title>Патент на изобретение № 2839302</image:title>
 		</image:image>
 
-        <image:image>
-			<image:loc>https://transplantbusiness.com/assets/images/logo AF.svg</image:loc>
-			<image:title>Ecological Hair Transplant AF Logo</image:title>
+		<image:image>
+			<image:loc>https://www.business.akademy21.ru/assets/images/logo%20AF.svg</image:loc>
+			<image:title>Логотип Ecological Hair Transplant AF</image:title>
 		</image:image>
 	</url>
 </urlset>

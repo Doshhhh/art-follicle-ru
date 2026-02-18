@@ -1086,7 +1086,7 @@
       progressBar.style.width = `${percent}%`;
     };
 
-    const formatMoney = (value) => new Intl.NumberFormat("en-US").format(value);
+    const formatMoney = (value) => new Intl.NumberFormat("ru-RU").format(value);
 
     const updateCalculatorResult = () => {
       const license = calculatorForm.querySelector('input[name="license"]:checked')?.value;
@@ -1101,13 +1101,13 @@
         } else {
           let revenue = 0;
           switch (license) {
-            case "standard": revenue = 3000 * workdays * services; break;
-            case "exclusive": revenue = 3500 * workdays * services; break;
-            default: revenue = 2500 * workdays * services;
+            case "standard": revenue = 300000 * workdays * services; break;
+            case "exclusive": revenue = 350000 * workdays * services; break;
+            default: revenue = 250000 * workdays * services;
           }
           if (marketing === "no") revenue = Math.round(revenue * 0.7);
-          
-          resultValue.textContent = `€${formatMoney(revenue)}`;
+
+          resultValue.textContent = `${formatMoney(revenue)} ₽`;
           resultBox.classList.remove("is-hidden");
         }
       }
@@ -1117,9 +1117,9 @@
       if (resultsContainer && license && marketing) {
         let revenue = 0;
         switch (license) {
-          case "standard": revenue = 3000 * workdays * services; break;
-          case "exclusive": revenue = 3500 * workdays * services; break;
-          default: revenue = 2500 * workdays * services;
+          case "standard": revenue = 300000 * workdays * services; break;
+          case "exclusive": revenue = 350000 * workdays * services; break;
+          default: revenue = 250000 * workdays * services;
         }
         if (marketing === "no") revenue = Math.round(revenue * 0.7);
 
@@ -1128,10 +1128,10 @@
         const resMonth6 = resultsContainer.querySelector('[data-result="month6"]');
         const resYear = resultsContainer.querySelector('[data-result="year"]');
 
-        if (resMonth) resMonth.textContent = `€${formatMoney(revenue)}`;
-        if (resMonth3) resMonth3.textContent = `€${formatMoney(revenue * 3)}`;
-        if (resMonth6) resMonth6.textContent = `€${formatMoney(revenue * 6)}`;
-        if (resYear) resYear.textContent = `€${formatMoney(revenue * 12)}`;
+        if (resMonth) resMonth.textContent = `${formatMoney(revenue)} ₽`;
+        if (resMonth3) resMonth3.textContent = `${formatMoney(revenue * 3)} ₽`;
+        if (resMonth6) resMonth6.textContent = `${formatMoney(revenue * 6)} ₽`;
+        if (resYear) resYear.textContent = `${formatMoney(revenue * 12)} ₽`;
       }
     };
 
