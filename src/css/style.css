@@ -2571,7 +2571,7 @@ section[id] {
   padding-left: 0;
   color: var(--text-color);
   display: grid;
-  gap: 12px;
+  gap: 6px;
   list-style: none;
   font-size: 16px;
 }
@@ -2579,7 +2579,7 @@ section[id] {
 .tariff-card ul li {
   position: relative;
   padding-left: 24px;
-  line-height: 1.6;
+  line-height: 1.3;
 }
 
 .tariff-card ul li::before {
@@ -3673,10 +3673,7 @@ section[id] {
   }
 
   .patent__slider-main::after {
-    content: "← Swipe →";
-    font-size: 14px;
-    color: var(--muted-color);
-    text-align: center;
+    content: none;
   }
 }
 
