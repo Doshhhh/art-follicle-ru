@@ -2477,8 +2477,8 @@ section[id] {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  text-align: center;
-  align-items: center;
+  text-align: left;
+  align-items: stretch;
   transition: all 0.3s ease;
   position: relative;
   overflow: visible;
@@ -2519,22 +2519,21 @@ section[id] {
   border: 1px solid var(--border-color);
 }
 
-.tariff-card--highlight,
-.tariff-card:last-child {
+.tariff-card--highlight {
   border-color: var(--primary-color);
   background: linear-gradient(135deg, #faf8ff 0%, #f3eeff 100%);
   box-shadow: 0 18px 32px rgba(132, 43, 255, 0.18);
 }
 
-[data-theme="dark"] .tariff-card:last-child {
+[data-theme="dark"] .tariff-card--highlight {
   background: linear-gradient(135deg, var(--surface-light) 0%, rgba(132, 43, 255, 0.08) 100%);
   border-color: var(--primary-color);
 }
 
 .tariff-card__header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 16px;
   width: 100%;
   flex-direction: column;
@@ -2584,16 +2583,17 @@ section[id] {
 }
 
 .tariff-card ul li::before {
-  content: "—";
+  content: "✓";
   position: absolute;
   left: 0;
-  color: var(--text-color);
+  color: var(--primary-color);
+  font-weight: 700;
 }
 
 .tariff-card__footer {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 16px;
   margin-top: auto;
   padding-top: 16px;
