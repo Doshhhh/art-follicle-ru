@@ -880,6 +880,18 @@
       .filter(Boolean);
 
     if (initialWords.length > 0) {
+      // Fix layout shift: set min-width to the widest word across all languages
+      const _canvas = document.createElement('canvas');
+      const _ctx = _canvas.getContext('2d');
+      const _cs = window.getComputedStyle(typed);
+      _ctx.font = `${_cs.fontWeight} ${_cs.fontSize} ${_cs.fontFamily}`;
+      let _maxPx = 0;
+      ['data-words', 'data-words-ru', 'data-words-kz'].forEach(attr => {
+        (typed.getAttribute(attr) || '').split(',').map(w => w.trim()).filter(Boolean)
+          .forEach(w => { const pw = _ctx.measureText(w).width; if (pw > _maxPx) _maxPx = pw; });
+      });
+      if (_maxPx > 0) typed.style.minWidth = _maxPx + 'px';
+
       let activeWords = [...initialWords];
       let wordIndex = 0;
       let charIndex = 0;
