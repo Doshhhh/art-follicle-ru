@@ -2,29 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-	<url>
-		<loc>https://www.business.akademy21.ru/</loc>
-		<lastmod>2026-02-18</lastmod>
-		<changefreq>weekly</changefreq>
-		<priority>1.0</priority>
 
-		<xhtml:link rel="alternate" hreflang="ru" href="https://www.business.akademy21.ru/" />
-		<xhtml:link rel="alternate" hreflang="en" href="https://transplantbusiness.com/" />
+  <!-- Русская версия -->
+  <url>
+    <loc>https://transplantbusiness.kz/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
 
-		<image:image>
-			<image:loc>https://www.business.akademy21.ru/assets/images/webp/tild3031-3465-4530-b832-343736323261__main_pic.webp</image:loc>
-			<image:title>Ecological Hair Transplant AF — основное изображение</image:title>
-			<image:caption>Откройте бизнес с запатентованной технологией пересадки волос</image:caption>
-		</image:image>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://transplantbusiness.kz/" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://transplantbusiness.kz/kz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://transplantbusiness.kz/" />
 
-		<image:image>
-			<image:loc>https://www.business.akademy21.ru/assets/images/webp/_4pdf_-_Page_1_of_1.jpg.webp</image:loc>
-			<image:title>Патент на изобретение № 2839302</image:title>
-		</image:image>
+    <image:image>
+      <image:loc>https://transplantbusiness.kz/assets/images/webp/tild3031-3465-4530-b832-343736323261__main_pic.webp</image:loc>
+      <image:title>Ecological Hair Transplant AF — франшиза по пересадке волос</image:title>
+      <image:caption>Откройте бизнес с запатентованной технологией пересадки волос</image:caption>
+    </image:image>
 
-		<image:image>
-			<image:loc>https://www.business.akademy21.ru/assets/images/logo%20AF.svg</image:loc>
-			<image:title>Логотип Ecological Hair Transplant AF</image:title>
-		</image:image>
-	</url>
+    <image:image>
+      <image:loc>https://transplantbusiness.kz/assets/images/webp/_4pdf_-_Page_1_of_1.jpg.webp</image:loc>
+      <image:title>Патент на изобретение № 2839302</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://transplantbusiness.kz/assets/images/logo%20AF.svg</image:loc>
+      <image:title>Логотип Ecological Hair Transplant AF</image:title>
+    </image:image>
+  </url>
+
+  <!-- Казахская версия -->
+  <url>
+    <loc>https://transplantbusiness.kz/kz/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+
+    <xhtml:link rel="alternate" hreflang="ru" href="https://transplantbusiness.kz/" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://transplantbusiness.kz/kz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://transplantbusiness.kz/" />
+
+    <image:image>
+      <image:loc>https://transplantbusiness.kz/assets/images/webp/tild3031-3465-4530-b832-343736323261__main_pic.webp</image:loc>
+      <image:title>Ecological Hair Transplant AF — шаш трансплантациясы франшизасы</image:title>
+      <image:caption>Патенттелген технологиямен бизнес ашыңыз</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
