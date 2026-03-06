@@ -9,6 +9,118 @@
   function initApp() {
     const body = document.body;
 
+  /* ====== GA4 Event Tracking Helper ====== */
+  const trackEvent = (eventName, params = {}) => {
+    if (typeof gtag !== 'function') return;
+    params.event_timestamp = new Date().toISOString();
+    gtag('event', eventName, params);
+  };
+
+  /* ====== Cookie Consent System ====== */
+  const CONSENT_KEY = 'cookie_consent';
+  const CONSENT_TTL = 182 * 24 * 60 * 60 * 1000; // 6 months
+
+  const getCookieConsent = () => {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      const { value, expires } = JSON.parse(raw);
+      if (Date.now() > expires) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return value;
+    } catch {
+      return null;
+    }
+  };
+
+  const setCookieConsent = (value) => {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      value,
+      expires: Date.now() + CONSENT_TTL
+    }));
+  };
+
+  const applyConsent = (value) => {
+    if (typeof gtag !== 'function') return;
+    if (value === 'all') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      });
+    } else {
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+  };
+
+  const showBanner = (banner) => {
+    banner.removeAttribute('hidden');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        banner.classList.add('is-visible');
+      });
+    });
+  };
+
+  const hideBanner = (banner) => {
+    banner.classList.remove('is-visible');
+    const onEnd = () => { banner.setAttribute('hidden', ''); };
+    banner.addEventListener('transitionend', onEnd, { once: true });
+    setTimeout(onEnd, 500);
+  };
+
+  const initCookieBanner = () => {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    const saved = getCookieConsent();
+    if (saved) {
+      applyConsent(saved);
+      return;
+    }
+
+    showBanner(banner);
+
+    const acceptBtn = document.getElementById('cookie-accept');
+    const essentialBtn = document.getElementById('cookie-essential');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        setCookieConsent('all');
+        applyConsent('all');
+        hideBanner(banner);
+        trackEvent('cookie_consent', {
+          consent_choice: 'all',
+          analytics_storage: 'granted',
+          ad_storage: 'granted'
+        });
+      });
+    }
+
+    if (essentialBtn) {
+      essentialBtn.addEventListener('click', () => {
+        setCookieConsent('essential');
+        applyConsent('essential');
+        hideBanner(banner);
+        trackEvent('cookie_consent', {
+          consent_choice: 'essential',
+          analytics_storage: 'denied',
+          ad_storage: 'denied'
+        });
+      });
+    }
+  };
+
+  initCookieBanner();
+
   /* ====== Theme Switcher ====== */
   const themeToggle = document.querySelector(".theme-toggle");
   const themeToggleMobile = document.querySelector(".theme-toggle--mobile");
@@ -263,6 +375,10 @@
       "award.text": "Academy 21 официально признана ведущим образовательным учреждением года. Эта награда отражает исключительное качество наших программ, безупречную репутацию и выдающийся профессионализм команды. Выбирая нас, вы выбираете проверенную надёжность и передовой опыт.",
       "award2.title": "Лауреат премии «Время инноваций»",
       "award2.text": "Стремление Academy 21 к повышению отраслевых стандартов было отмечено премией «Время инноваций». Это признание подчёркивает нашу успешную интеграцию современных технологий и выдающихся образовательных программ. Станьте партнёром признанного новатора, чтобы вывести свой бизнес на новый уровень.",
+      // Cookie Banner
+      "cookie.text": "Мы используем файлы cookie для улучшения работы сайта и анализа трафика. Вы можете принять все cookie или только необходимые для работы сайта. <a class=\"cookie-banner__link\" href=\"https://ec.europa.eu/info/cookies_en\" target=\"_blank\" rel=\"noopener noreferrer\">Подробнее</a>",
+      "cookie.essential": "Только необходимые",
+      "cookie.accept": "Принять все",
     },
     kz: {
       // Nav
@@ -432,6 +548,10 @@
       "award.text": "Academy 21 жыл ішіндегі жетекші білім беру мекемесі ретінде ресми танылды. Бұл марапат біздің бағдарламалардың ерекше сапасын, мінсіз беделімізді және командамыздың кәсіби шеберлігін көрсетеді. Бізді таңдай отырып, сіз сенімді тәжірибе мен озық білімді таңдайсыз.",
       "award2.title": "«Инновация уақыты» марапатының лауреаты",
       "award2.text": "Academy 21-дің салалық стандарттарды жоғарылатуға деген ұмтылысы «Инновация уақыты» марапатымен атап өтілді. Бұл мойындау заманауи технологияларды және үздік білім беру бағдарламаларын сәтті кіріктіруімізді айқындайды. Танылған новатормен серіктес болып, бизнесіңізді жаңа деңгейге шығарыңыз.",
+      // Cookie Banner
+      "cookie.text": "Біз сайт жұмысын жақсарту және трафикті талдау үшін cookie файлдарын пайдаланамыз. Сіз барлық cookie файлдарын немесе тек қажеттілерін қабылдай аласыз. <a class=\"cookie-banner__link\" href=\"https://ec.europa.eu/info/cookies_en\" target=\"_blank\" rel=\"noopener noreferrer\">Толығырақ</a>",
+      "cookie.essential": "Тек қажеттілер",
+      "cookie.accept": "Барлығын қабылдау",
     }
   };
 
@@ -785,6 +905,13 @@
 
     if (success) {
       showNotification("Thank you! Your request has been sent successfully. We will contact you shortly.", "success");
+      trackEvent('generate_lead', {
+        form_id: form.id || 'unknown',
+        form_name: formSource,
+        form_source: formSource,
+        time_on_site: getTimeOnSite(),
+        country: userCountry
+      });
       form.reset();
       
       // Close modal if form is inside one
@@ -1885,5 +2012,188 @@
       }
     });
   });
+  /* ====== GA4 Event Tracking ====== */
+  const pageLoadTime = Date.now();
+
+  // 1. Email copy click → click_to_email
+  document.querySelectorAll('.js-copy-email').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('click_to_email', {
+        link_text: link.textContent.trim(),
+        link_location: link.closest('section')?.id || 'unknown'
+      });
+    });
+  });
+
+  // 2. Modal open → modal_open
+  const observeModals = () => {
+    document.querySelectorAll('.modal').forEach(modal => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach(m => {
+          if (m.target.classList.contains('is-open')) {
+            const title = modal.querySelector('.modal__title, .modal__subtitle');
+            trackEvent('modal_open', {
+              modal_id: modal.id,
+              modal_title: (title?.textContent || '').slice(0, 50)
+            });
+          }
+        });
+      });
+      observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+  };
+  observeModals();
+
+  // 3. FAQ open → faq_open
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq__item');
+      trackEvent('faq_open', {
+        question_text: (btn.textContent || '').trim().slice(0, 100),
+        faq_id: item?.id || 'unknown'
+      });
+    });
+  });
+
+  // 4. Video play → video_play
+  document.querySelectorAll('video').forEach((video, index) => {
+    video.addEventListener('play', () => {
+      trackEvent('video_play', {
+        video_index: index + 1,
+        video_src: video.currentSrc || video.src || '',
+        video_location: video.closest('section')?.id || 'unknown'
+      });
+    }, { once: true });
+  });
+
+  // 5. WhatsApp click → click_to_call
+  document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('click_to_call', {
+        contact_method: 'whatsapp',
+        link_location: link.closest('section')?.id || 'header'
+      });
+    });
+  });
+
+  // 6. Instagram click → click_social
+  document.querySelectorAll('a[href*="instagram.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('click_social', {
+        social_network: 'instagram',
+        link_location: link.closest('section')?.id || 'footer'
+      });
+    });
+  });
+
+  // 7. Form start → form_start (first focus)
+  document.querySelectorAll('form').forEach(form => {
+    let started = false;
+    form.addEventListener('focusin', (e) => {
+      if (started) return;
+      if (e.target.matches('input, textarea, select')) {
+        started = true;
+        trackEvent('form_start', {
+          form_id: form.id || form.className.split(' ')[0] || 'unknown',
+          form_location: form.closest('section')?.id || (form.closest('.modal')?.id || 'modal')
+        });
+      }
+    });
+  });
+
+  // 8. Calculator start → calculator_start
+  const calcStartBtn = document.querySelector('[data-step-start]');
+  if (calcStartBtn) {
+    calcStartBtn.addEventListener('click', () => {
+      trackEvent('calculator_start', { calculator_type: 'profitability' });
+    });
+  }
+
+  // 9. Calculator complete → calculator_complete
+  // Hook into showStep to detect when results step (index 5) is shown
+  const calcSteps = document.querySelectorAll('.calculator-form__step');
+  if (calcSteps.length > 0) {
+    const calcObserver = new MutationObserver(() => {
+      const resultsStep = calcSteps[5];
+      if (resultsStep && resultsStep.classList.contains('is-active')) {
+        const licenseInput = document.querySelector('input[name="license"]:checked');
+        const yearlyEl = document.querySelector('.calculator-results__value--yearly, [data-result="year"]');
+        trackEvent('calculator_complete', {
+          calculator_type: 'profitability',
+          license_type: licenseInput?.value || 'unknown',
+          yearly_estimate: yearlyEl?.textContent?.trim() || 'unknown'
+        });
+        calcObserver.disconnect();
+      }
+    });
+    calcSteps.forEach(step => {
+      calcObserver.observe(step, { attributes: true, attributeFilter: ['class'] });
+    });
+  }
+
+  // 10. Section view → section_view (IntersectionObserver at 30%)
+  const trackedSections = ['hero', 'revenue', 'advantages', 'kalkulator', 'technology', 'patent', 'benefits', 'partnerstvo', 'faq', 'contacts'];
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        trackEvent('section_view', {
+          section_id: entry.target.id,
+          time_on_page: Math.round((Date.now() - pageLoadTime) / 1000)
+        });
+        sectionObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  trackedSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  // 11. Time on page milestones → time_on_page
+  const timeMilestones = [
+    { seconds: 30, label: '30s' },
+    { seconds: 60, label: '1m' },
+    { seconds: 180, label: '3m' },
+    { seconds: 300, label: '5m' }
+  ];
+  let milestoneIndex = 0;
+  const timeInterval = setInterval(() => {
+    if (milestoneIndex >= timeMilestones.length) {
+      clearInterval(timeInterval);
+      return;
+    }
+    const elapsed = Math.round((Date.now() - pageLoadTime) / 1000);
+    if (elapsed >= timeMilestones[milestoneIndex].seconds) {
+      trackEvent('time_on_page', {
+        time_seconds: timeMilestones[milestoneIndex].seconds,
+        time_formatted: timeMilestones[milestoneIndex].label
+      });
+      milestoneIndex++;
+    }
+  }, 10000);
+
+  // 12. CTA button click → cta_click
+  document.querySelectorAll('.button--primary, .button--cta').forEach(btn => {
+    btn.addEventListener('click', () => {
+      trackEvent('cta_click', {
+        button_text: (btn.textContent || '').trim().slice(0, 50),
+        button_location: btn.closest('section')?.id || btn.closest('.modal')?.id || 'header',
+        button_type: btn.classList.contains('button--cta') ? 'cta' : 'primary'
+      });
+    });
+  });
+
+  // 13. Navigation click → navigation_click
+  document.querySelectorAll('.nav__link, .footer__nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('navigation_click', {
+        link_text: (link.textContent || '').trim(),
+        link_href: link.getAttribute('href') || '',
+        nav_location: link.closest('nav')?.className || ''
+      });
+    });
+  });
+
   }
 })();

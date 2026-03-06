@@ -2,13 +2,22 @@
 <html lang="ru">
 
 <head>
+  <!-- Google Consent Mode v2 — default DENIED until user chooses -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7YETVH5J3"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-Q7YETVH5J3');
   </script>
   <meta charset="utf-8" />
@@ -1170,5 +1179,35 @@
       ]
     }
   </script>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__body">
+        <svg class="cookie-banner__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="currentColor" />
+        </svg>
+        <p class="cookie-banner__text" data-i18n-html="cookie.text">
+          Мы используем файлы cookie для улучшения работы сайта и анализа трафика.
+          Вы можете принять все cookie или только необходимые для работы сайта.
+          <a class="cookie-banner__link" href="https://ec.europa.eu/info/cookies_en" target="_blank"
+            rel="noopener noreferrer">Подробнее</a>
+        </p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn cookie-banner__btn--secondary" id="cookie-essential" type="button"
+          data-i18n="cookie.essential">
+          Только необходимые
+        </button>
+        <button class="cookie-banner__btn cookie-banner__btn--primary" id="cookie-accept" type="button"
+          data-i18n="cookie.accept">
+          Принять все
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
