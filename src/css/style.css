@@ -4002,7 +4002,9 @@ section[id] {
 
 .contacts__grid {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
 }
 
 .contacts__info {
