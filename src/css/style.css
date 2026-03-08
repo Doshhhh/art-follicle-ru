@@ -4064,19 +4064,20 @@ section[id] {
 }
 
 .contacts__addresses {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 24px;
 }
 
 .contacts__address-card {
   background: var(--surface-color);
-  padding: 24px;
-  border-radius: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  max-width: 320px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -4099,15 +4100,15 @@ section[id] {
 
 .contacts__address-title {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .contacts__address-text {
   margin: 0;
-  font-size: 15px;
+  font-size: 13px;
   color: var(--muted-color);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .contacts__map-link {
