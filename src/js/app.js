@@ -2013,7 +2013,6 @@
     });
   });
   /* ====== GA4 Event Tracking ====== */
-  const pageLoadTime = Date.now();
 
   // 1. Email copy click → click_to_email
   document.querySelectorAll('.js-copy-email').forEach(link => {
