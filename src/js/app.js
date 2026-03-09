@@ -1095,7 +1095,9 @@
 
   /* ====== Reveal Animations ====== */
   const revealItems = document.querySelectorAll(".reveal, .reveal-item");
-  if (revealItems.length > 0) {
+  if (revealItems.length > 0 && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("reveal-ready");
+
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {

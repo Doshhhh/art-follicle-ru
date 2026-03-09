@@ -2014,8 +2014,8 @@ section[id] {
 }
 
 /* Reveal animations — only hide when JS is confirmed working */
-.js-ready .reveal,
-.js-ready .reveal-item {
+.reveal-ready .reveal,
+.reveal-ready .reveal-item {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
@@ -2029,12 +2029,12 @@ section[id] {
 }
 
 /* Staggered children animation */
-.js-ready .reveal-item:nth-child(1) { transition-delay: 0.1s; }
-.js-ready .reveal-item:nth-child(2) { transition-delay: 0.2s; }
-.js-ready .reveal-item:nth-child(3) { transition-delay: 0.3s; }
-.js-ready .reveal-item:nth-child(4) { transition-delay: 0.4s; }
-.js-ready .reveal-item:nth-child(5) { transition-delay: 0.5s; }
-.js-ready .reveal-item:nth-child(6) { transition-delay: 0.6s; }
+.reveal-ready .reveal-item:nth-child(1) { transition-delay: 0.1s; }
+.reveal-ready .reveal-item:nth-child(2) { transition-delay: 0.2s; }
+.reveal-ready .reveal-item:nth-child(3) { transition-delay: 0.3s; }
+.reveal-ready .reveal-item:nth-child(4) { transition-delay: 0.4s; }
+.reveal-ready .reveal-item:nth-child(5) { transition-delay: 0.5s; }
+.reveal-ready .reveal-item:nth-child(6) { transition-delay: 0.6s; }
 
 /* Award Section */
 .award {
@@ -2384,7 +2384,7 @@ section[id] {
   color: var(--text-color);
 }
 
-.js-ready .patent__media.reveal-item {
+.reveal-ready .patent__media.reveal-item {
   opacity: 0;
   transform: translateX(80px);
   transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
